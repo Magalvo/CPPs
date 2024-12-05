@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:23:29 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/11/27 16:49:37 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:28:28 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class PhoneBook
 {
     private:
     Contact     contacts[NUMNUM];
-    Contact     findContactByIndex(int index, int pos);
+    Contact     *findContactByIndex(int index, int pos);
     std::string getValidInput(std::string prompt, bool isPhone);
     void        putCharN(std::string toPrint, long unsigned int n);
     bool        validNumber(std::string phoneNumber, bool isPhone);

@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:24:38 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/11/27 16:43:34 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:08:07 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ private:
     std::string _nickname;
     std::string _phoneNumber;
     std::string _darkSecret;
-    int         index;
+    int         _index;
 public:
     Contact(void);
     std::string switchGet(int val);
@@ -43,18 +43,9 @@ public:
     void        setDarkSecret(std::string darkestSecret);
     void        increaseIndex(int i);
     void        setIndex(int index);
-    void        putStr(std::string str);
+    //void        putStr(std::string str);
     int         getIndex(void);
     ~Contact(void);
 };
-
-Contact::Contact(/* args */)
-{
-}
-
-Contact::~Contact()
-{
-}
-
 
 #endif

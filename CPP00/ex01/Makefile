@@ -6,26 +6,30 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/26 13:54:15 by dde-maga          #+#    #+#              #
-#    Updated: 2024/11/26 13:55:07 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/12/05 17:02:23 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
-SRC = megaphone.cpp
+CC = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-OBJ = $(SRC:.cpp=.o) $(MAIN:.cpp=.o)
+SRC = Contact.cpp PhoneBook.cpp
 
-CC = c++
+MAIN = main.cpp
+
+OBJ = $(SRC:.cpp=.o) $(MAIN:.cpp=.o)
 
 %.o: %.cpp
 	@$(CC) $(FLAGS) -o $@ -c $<
 
+HEADERS = Contact.hpp PhoneBook.hpp
+
 all : ${NAME}
 
-${NAME}: ${OBJ}
+${NAME}: ${OBJ} ${HEADERS}
 	@echo "Compiling into object files"
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "Compiled successfuly!"
