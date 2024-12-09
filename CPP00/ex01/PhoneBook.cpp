@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:25:06 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/05 17:09:00 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:59:06 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void    putStr(std::string str)
 {
-   std::cout << str << std::endl; 
+   std::cout << str; 
 }
 
 PhoneBook::PhoneBook(void){
-	putStr("Phone Book was created");
+	putStr("Phone Book was created\n");
 }
 
 PhoneBook::~PhoneBook(void){
-	putStr("Phone Book was destroyed");
+	putStr("Phone Book was destroyed\n");
 }
 
 void    PhoneBook::putCharN(std::string toPrint, long unsigned int n){
@@ -37,11 +37,14 @@ bool	PhoneBook::validNumber(std::string phoneNumber, bool isPhone){
 	if (!isPhone)
 		return (true);
 	i = phoneNumber[0] && phoneNumber[0] == '+' ? 1 : 0;
-	if (!phoneNumber[i])
-		return (putStr("Inavlid phone number! Type again: "), false);
+	if (!phoneNumber[i]){
+		putStr("Invalid phone number! Type again: \n");
+		return (false);
+	}
 	while (phoneNumber[i]){
 		if (!std::isdigit(phoneNumber[i++])){
-			return (putStr("Inavlid phone number! Type again: "), false);
+			putStr("Inavlid phone number! Type again: \n");
+			return (false);
 		}
 	}
 	return (true);
@@ -50,12 +53,24 @@ bool	PhoneBook::validNumber(std::string phoneNumber, bool isPhone){
 std::string PhoneBook::getValidInput(std::string prompt, bool isPhone){
 	std::string input;
 	putStr(prompt);
-	while (!std::cin.eof() && (!validNumber(input, isPhone) || input.length() == 0)){
+	putStr("\n");
+	//std::cout << prompt << std::endl;
+	do{
 		std::getline(std::cin, input);
+		//?checks for non-printables so we can ignore them 
+		std::string filteredInput;
+		for (std::string::size_type i = 0; i < input.length(); ++i) {
+			if (std::isprint(static_cast<unsigned char>(input[i]))) {
+				filteredInput += input[i];
+			}
+		}
+		input = filteredInput;
 	}
+	while(!std::cin.eof() && (!validNumber(input, isPhone) || input.length() == 0));
+
 	if(std::cin.eof()){
 		std::cout << std::endl;
-		putStr("End of file was reached(EOF)! Exiting program...");
+		putStr("End of file was reached(EOF)! Exiting program...\n");
 		return (input);
 	}
 	return (input);
@@ -78,10 +93,10 @@ void	PhoneBook::addContact(int position){
 	
 	appendContact->setFirstName(getValidInput("First Name:", false));
 	appendContact->setLastName(getValidInput("Last Name: ", false));
-	appendContact->setNickname(getValidInput("Nickname: ", false));
-	appendContact->setPhoneNumber(getValidInput("Phone Number", true));
-	appendContact->setDarkSecret(getValidInput("Darkest Secret: ", false));
-	putStr("Contact added successfully :)\n");
+	appendContact->setNickname(getValidInput("Nickname:", false));
+	appendContact->setPhoneNumber(getValidInput("Phone Number:", true));
+	appendContact->setDarkSecret(getValidInput("Darkest Secret:", false));
+	putStr("Contact added successfully :)\n\n");
 }
 
 Contact *PhoneBook::findContactByIndex(int index, int position){
@@ -95,28 +110,28 @@ Contact *PhoneBook::findContactByIndex(int index, int position){
 void	PhoneBook::searchContacts(int position){
 	
 	int index;
-	
-	std::cout << std::right << std::setw(10) << "Index     " << "|";
+	//?giving a width spacing
+	std::cout << std::right << std::setw(10) << "Index" << "|";
 	std::cout << std::right << std::setw(10) << "First Name" << "|";
-	std::cout << std::right << std::setw(10) << "Last Name " << "|";
-	std::cout << std::right << std::setw(10) << "Nickname  " << std::endl;
+	std::cout << std::right << std::setw(10) << "Last Name" << "|";
+	std::cout << std::right << std::setw(10) << "Nickname" << std::endl;
 
 	for(int i = 0; i < position; i++)
 	{
 		std::cout << std::right << std::setw(10) << this->contacts[i].getIndex() << "|";
 		putCharN(this->contacts[i].getFirstName(), 10);
-		putStr("|");
+		std::cout << "|";
 		putCharN(this->contacts[i].getLastName(), 10);
-		putStr("|");
-		putCharN(this->contacts[i].getLastName(), 10);
-		putStr("");
+		std::cout << "|";
+		putCharN(this->contacts[i].getNickname(), 10);
+		std::cout << std::endl;
 	}
 	putStr("Index Check -> ");
 	
 	if (!(std::cin >> index) || index < 0 || index >= position || index >= NUMNUM){
-		putStr("Contact non existent on the database");
+		putStr("Contact non existent on the database\n");
 		if (std::cin.eof()){
-			putStr("End of file was reached(EOF)! Exiting program...");
+			putStr("End of file was reached(EOF)! Exiting program...\n");
 			return ;
 		}
 		std::cin.clear();
@@ -124,11 +139,11 @@ void	PhoneBook::searchContacts(int position){
 		return ;
 	} else {
 		if(std::cin.eof()){
-			putStr("End of file was reached(EOF)! Exiting program...");
+			putStr("End of file was reached(EOF)! Exiting program...\n");
 			return ;
 		}
 		std::cin.clear();
-		std::cin.clear();
+		std::cin.ignore(1024, '\n');
 		Contact	*currentContact = findContactByIndex(index, position);
 		std::cout << "Index: " << currentContact->getIndex() << std::endl;
 		std::cout << "First Name: " << currentContact->getFirstName() << std::endl;

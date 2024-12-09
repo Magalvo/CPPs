@@ -5,25 +5,25 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/26 13:54:15 by dde-maga          #+#    #+#              #
-#    Updated: 2024/12/09 11:53:55 by dde-maga         ###   ########.fr        #
+#    Created: 2024/12/09 15:01:27 by dde-maga          #+#    #+#              #
+#    Updated: 2024/12/09 16:47:48 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = phonebook
+NAME = Bank
 
 CC = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-SRC = Contact.cpp PhoneBook.cpp
+SRC = Account.cpp tests.cpp
 
 MAIN = main.cpp
 
 SRCOBJ = obj/
-OBJ = $(addprefix $(SRCOBJ), $(notdir $(SRC:.cpp=.o) $(MAIN:.cpp=.o)))
+OBJ = $(addprefix $(SRCOBJ), $(notdir $(SRC:.cpp=.o)))
 
-HEADERS = Contact.hpp PhoneBook.hpp
+HEADERS = Account.hpp
 
 all: $(NAME)
 

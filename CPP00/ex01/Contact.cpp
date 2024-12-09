@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 15:50:20 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/05 17:14:24 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:05:38 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ std::string Contact::getLastName(void){
 }
 
 std::string Contact::getNickname(void){
-	return (this->_lastName);
+	return (this->_nickname);
 }
 
 std::string Contact::getPhoneNumber(void){
-	return (this->_lastName);
+	return (this->_phoneNumber);
 }
 std::string Contact::getDarkSecret(void){
 	return this->_darkSecret;
