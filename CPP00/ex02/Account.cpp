@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 15:00:53 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/09 17:09:15 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:54:57 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ Account::~Account(void){
 	_nbAccounts--;
 }
 
-//?============== Acc Info =============== 
+//?============== Account Info =============== 
 void    Account::displayAccountsInfos( void ){
 	_displayTimestamp();
 	putStr("accounts:");
@@ -131,6 +131,7 @@ bool	Account::makeWithdrawal( int withdrawal ){
 	return (true);
 }
 
+//?============== Info Check ================
 int		Account::checkAmount( void ) const{
 	_displayTimestamp();
 	return (this->_totalAmount);
