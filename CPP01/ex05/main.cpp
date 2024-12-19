@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 17:21:50 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/19 15:20:42 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/12/19 17:28:53 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/12/19 17:47:22 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Harl.hpp"
 
-Zombie  *newZombie(std::string name)
+void    putStr(std::string str, std::string color)
 {
-    Zombie *goToHeap = new Zombie(name);
-    return (goToHeap);
+   std::cout << color << str << RESET; 
+}
+
+int main()
+{
+    Harl harl;
+    harl.complain("DEBUG");
+    harl.complain("INFO");
+    harl.complain("WARNING");
+    harl.complain("ERROR");
+    harl.complain("debug");
+    harl.complain("debuga");
+    harl.complain("aaaa");
+    harl.complain("");
+    return (0);
 }

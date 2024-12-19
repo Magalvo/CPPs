@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:25:06 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/09 13:59:06 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:20:33 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	PhoneBook::addContact(int position){
 	if (position >= NUMNUM)
 	{
 		for (int i = 0; i < NUMNUM - 1; i++){
-			this->contacts[i] = this->contacts[i-1];
+			this->contacts[i] = this->contacts[i+1];
 			this->contacts[i].increaseIndex(-1);
 		}
 		appendContact = &this->contacts[NUMNUM - 1];
