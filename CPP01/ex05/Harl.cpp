@@ -6,41 +6,47 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:28:31 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/19 17:55:09 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/19 20:31:22 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
-Harl::Harl(void){
-   putStr("HARLEY\n\n", GREEN); 
+Harl::Harl(void)
+{
+    putStr("HARLEY\n\n", GREEN);
 }
 
-Harl::~Harl(void){
-     putStr("HARLEY BUM!\n", RED);
+Harl::~Harl(void)
+{
+    putStr("HARLEY BUM!\n", RED);
 }
 
-void    Harl::debug(void){
-    putStr("DEBUG: ", GREEN);
+void Harl::debug(void)
+{
+    putStr("[DEBUG]\n", GREEN);
     putStr("I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!\n\n", CYAN);
 }
 
-void    Harl::info(void){
-    putStr("INFO: ", GREEN);
+void Harl::info(void)
+{
+    putStr("[INFO]\n ", GREEN);
     putStr("I cannot believe adding extra bacon costs more money. You didn’t put enough bacon in my burger! If you did, I wouldn’t be asking for more!\n\n", CYAN);
 }
 
-void    Harl::warning(void){
-    putStr("WARNING: ", GREEN);
+void Harl::warning(void)
+{
+    putStr("[WARNING]\n ", GREEN);
     putStr("I think I deserve to have some extra bacon for free. I’ve been coming for years whereas you started working here since last month.\n\n", CYAN);
 }
 
-void    Harl::error(void){
-    putStr("ERROR: ", GREEN);
+void Harl::error(void)
+{
+    putStr("[ERROR]\n ", GREEN);
     putStr("This is unacceptable! I want to speak to the manager now.\n\n", CYAN);
 }
 
-void    Harl::complain(std::string level)
+void Harl::complain(std::string level)
 {
     if (level == "DEBUG")
         Harl::debug();
@@ -53,4 +59,3 @@ void    Harl::complain(std::string level)
     else
         putStr("Invalid Command!\n\n", RED_BLINK);
 }
-
