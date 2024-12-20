@@ -6,7 +6,7 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 20:29:20 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/19 20:35:35 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:07:34 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ void putStr(std::string str, std::string color)
 int main(int argc, char **argv)
 {
 	Harl harl;
-	std::string level(argv[1]);
-	if (argc == 2)
+	if (argc != 2)
+		putStr("Invalid Number of Arguments!\n\n", RED);
+	else if (argc == 2)
+	{
+		std::string level(argv[1]);
 		harl.complain(level);
+	}
 	else
 		putStr("Invalid Command!\n\n", RED_BLINK);
 	return (0);
