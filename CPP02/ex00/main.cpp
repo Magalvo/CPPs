@@ -38,13 +38,10 @@ int main(void)
     Fixed b(a); //?Copy Contructor Called / Get raw bits function called
     Fixed c;    //?Default Constructor Called (c)
     c = b;
-    putStr("\n\n", RESET);
-    //Line break for output interpretation
-    putNum(a.getRawBits(), CYAN_BOLD);
-    putStr("\n", RESET);
-    putNum(b.getRawBits(), MAGENTA);
-    putStr("\n", RESET);
-    putNum(c.getRawBits(), GREEN);
-    putStr("\n\n", RESET);
+    
+    std::cout << CYAN << a.getRawBits() << std::endl;
+    std::cout << MAGENTA << b.getRawBits() << std::endl;
+    std::cout << GREEN << c.getRawBits() << std::endl;
+
     return(0);
 }

@@ -16,7 +16,7 @@ const int Fixed::_fbits = 8;
 
 //?Original COnstructor
 Fixed::Fixed() : _pfixed(0){
-    putStr("\nDefault Constructor Called\n", GREEN);
+    putStr("Default Constructor Called\n", GREEN);
 }
 
 Fixed::~Fixed(){
@@ -25,12 +25,12 @@ Fixed::~Fixed(){
 
 //?Copy Constructor
 Fixed::Fixed(const Fixed &copy){
-    putStr("\t(COPY) constructor called\n", CYAN);
+    putStr("(COPY) constructor called\n", CYAN);
     *this = copy;
 }
 
 Fixed &Fixed::operator = (const Fixed &src){
-    putStr("\t(COPY) assignment operator called\n", MAGENTA);
+    putStr("(COPY) assignment operator called\n", MAGENTA);
     if(this != &src)
         this->_pfixed = src.getRawBits();
     return (*this);
@@ -38,7 +38,7 @@ Fixed &Fixed::operator = (const Fixed &src){
 
 //?Getter
 int Fixed::getRawBits(void) const{
-    putStr("\tgetRawBits() member function called: ", YELLOW);
+    putStr("getRawBits() member function called \n", YELLOW);
     return (_pfixed);
 }
 

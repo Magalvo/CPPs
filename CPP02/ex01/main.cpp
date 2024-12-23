@@ -29,7 +29,26 @@ void putFixed(const Fixed& print, std::string color){
 	std::cout << color << print << RESET << "\n";
 }
 
-int main(void)
+
+int main( void ) 
+{
+Fixed a;
+Fixed const b( 10 );
+Fixed const c( 42.42f );
+Fixed const d( b );
+a = Fixed( 1234.4321f );
+std::cout << CYAN_BOLD <<  "a is " << MAGENTA << a << std::endl;
+std::cout << CYAN_BOLD <<  "b is " << MAGENTA <<  b << std::endl;
+std::cout << CYAN_BOLD <<  "c is " << MAGENTA <<  c << std::endl;
+std::cout << CYAN_BOLD <<  "d is " << MAGENTA <<  d << std::endl;
+std::cout << CYAN_BOLD <<  "a is " << MAGENTA <<  a.toInt() << RESET << " as integer" << std::endl;
+std::cout << CYAN_BOLD <<  "b is " << MAGENTA <<  b.toInt() << RESET <<  " as integer" << std::endl;
+std::cout << CYAN_BOLD <<  "c is " << MAGENTA <<  c.toInt() << RESET <<  " as integer" << std::endl;
+std::cout << CYAN_BOLD <<  "d is " << MAGENTA <<  d.toInt() << RESET <<  " as integer" << std::endl;
+return(0);
+}
+
+/* int main(void)
 {
 	Fixed a;
 	Fixed const b(10);
@@ -54,4 +73,4 @@ int main(void)
 	std::cout << CYAN_BOLD << "\td is: " << MAGENTA << d.toInt()   << " as integer" << std::endl << std::endl;
 
 	return (0);
-}
+} */
