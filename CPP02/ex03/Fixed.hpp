@@ -24,7 +24,7 @@
 #define RED_BLINK "\033[1;31;5m"
 #define GREEN "\033[1;32m"
 #define YELLOW "\033[0;33m"
-#define MAGENTA "\033[0;35m"
+#define MAGENTA "\033[1;35m"
 #define CYAN_BOLD "\033[1;36;5m"
 #define CYAN "\033[0;36m"
 

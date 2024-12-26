@@ -39,6 +39,6 @@ int main(void)
 	putFixed(a++, CYAN);
 	putFixed(a, CYAN);
 	putFixed(b, CYAN);
-    std::cout << CYAN << Fixed::max( a, b ) << std::endl;
+    std::cout << CYAN << Fixed::max( a, b ) << RESET << std::endl;
     return (0);
 }

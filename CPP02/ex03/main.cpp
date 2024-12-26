@@ -45,10 +45,10 @@ int main(void)
 
 	if(variavel == true)
 	{
-    	std::cout << true << std::endl;
-		putStr("O ponto está dentro do triângulo\n", CYAN_BOLD);
+    	std::cout << MAGENTA << true << std::endl;
+		putStr("O ponto está dentro do triângulo\n", GREEN);
 	}else{
-		putStr("O ponto está fora do triângulo\n", CYAN_BOLD);
+		putStr("O ponto está fora do triângulo\n", RED);
 	}
     return (0);
 }

@@ -16,22 +16,22 @@ const int Fixed::_fbits = 8;
 
 //?Original COnstructor
 Fixed::Fixed() : _pfixed(0){
-    putStr("\nDefault Constructor Called\n", GREEN);
+    putStr("\nFixed Default Constructor Called\n", GREEN);
 }
 
 Fixed::~Fixed(){
-    putStr("Destructor Called\n", RED);
+    putStr("Fixed Destructor Called\n", RED);
 }
 
 //?Copy Constructor
 Fixed::Fixed(const Fixed &copy){
-    putStr("\t(COPY) constructor called\n", CYAN);
+    putStr("\tFixed Copy Constructor called\n", CYAN_BOLD);
     *this = copy;
 }
 
 Fixed &Fixed::operator = (const Fixed &other){
     putStr("\t(COPY) assignment operator called\n", MAGENTA);
-    if(this != &other)
+    if(this != &other) //? avoid auto-atribution
         this->_pfixed = other.getRawBits();
     return (*this);
 }
@@ -49,6 +49,7 @@ void Fixed::setRawBits(int const raw){
 
 //?To INT
 Fixed::Fixed(const int value){
+    putStr("\tFixed Int Constructor called \n", YELLOW);
     _pfixed = value << _fbits; //? Bitshifting the given num of bits
 }
 
@@ -59,6 +60,7 @@ int Fixed::toInt(void) const{
 //?To FLOAT
 //? Instead of doing it bit by bit we do it block by block because of the (MANTISSA)
 Fixed::Fixed(const float floatValue){
+     putStr("\tFixed Float Constructor called \n", YELLOW);
     _pfixed = roundf(floatValue * (1 << _fbits));
 }
 

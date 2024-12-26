@@ -35,9 +35,9 @@ int main(void)
 {
     
     Fixed a;    //?Default Constructor Called (a)
-    Fixed b(a); //?Copy Contructor Called / Get raw bits function called
+    Fixed b(a); //?The atribute operator copies the value of _pfixed from (a) to (b).
     Fixed c;    //?Default Constructor Called (c)
-    c = b;
+    c = b;      //?Copies the value _pfixed from (b) to (c).
     
     std::cout << CYAN << a.getRawBits() << std::endl;
     std::cout << MAGENTA << b.getRawBits() << std::endl;
