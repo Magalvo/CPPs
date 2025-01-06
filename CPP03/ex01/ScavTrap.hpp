@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 20:29:20 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/20 15:07:34 by dde-maga         ###   ########.fr       */
+/*   Created: 2024/12/26 17:02:39 by dde-maga          #+#    #+#             */
+/*   Updated: 2024/12/26 17:15:16 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
 
-void putStr(std::string str, std::string color)
-{
-	std::cout << color << str << RESET;
-}
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
-int main(int argc, char **argv)
+
+#include "ClapTrap.hpp"
+
+class ScavTrap : public ClapTrap
 {
-	Harl harl;
-	if (argc != 2)
-		putStr("Invalid Number of Arguments!\n\n", RED);
-	else if (argc == 2)
-	{
-		std::string level(argv[1]);
-		harl.complain(level);
-	}
-	else
-		putStr("Invalid Command!\n\n", RED_BLINK);
-	return (0);
-}
+	public:
+	  ScavTrap();
+	  ScavTrap(std::string nameParam);
+	  ScavTrap(const ScavTrap& other);
+	  ScavTrap& operator=(const ScavTrap& other);
+	  ~ScavTrap();
+
+	  void  attack(const std::string& target);
+	  void  guardGate();
+};
+
+
+
+
+#endif
