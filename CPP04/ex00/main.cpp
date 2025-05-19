@@ -16,13 +16,12 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-void putStr(std::string str, std::string color)
-{
+
+void putStr(std::string str, std::string color){
 	std::cout << color << str << RESET;
 }
 
-void putNum(int bits, std::string color)
-{
+void putNum(int bits, std::string color){
 	std::cout << color << bits << RESET;
 }
 
@@ -34,28 +33,33 @@ const Animal* Tarix = new Cat();
 
 //?Animal
 putStr(Mimosa->getType() , RESET);
-putStr(" \n", RESET);
+putStr("\n********\n", RESET);
 Mimosa->makeSound();
-
+putStr("********\n\n", RESET);
 //?Dog
 putStr(Xispe->getType() , RESET);
-putStr(" \n", RESET);
+putStr("\n********\n", RESET);
 Xispe->makeSound();
+putStr("********\n\n", RESET);
 
 //?Cat
 putStr(Tarix->getType() , RESET);
-putStr(" \n", RESET);
+putStr("\n********\n", RESET);
 Tarix->makeSound();
+putStr("********\n\n", RESET);
 
 //?WrongAnimal
 WrongAnimal* Thanos = new WrongCat();
 putStr(Thanos->getType() , RESET);
-putStr(" \n", RESET);
+putStr("\n********\n", RESET);
 Thanos->makeSound();
+putStr("********\n\n", RESET);
 
+//! For dynamically allocated objects, the destructor is not called automatically unless delete is used.
 delete Mimosa;
 delete Xispe;
 delete Tarix;
 delete Thanos;
 return (0);
 }
+

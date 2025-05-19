@@ -1,26 +1,24 @@
 #include "Cat.hpp"
 #include "Animal.hpp"
 
-Cat::Cat() : Animal()
-{
-    type = "Cat";
+Cat::Cat() : Animal(){
     putStr("Cat constructor called\n", CYAN);
+    type = "Cat";
+    _brain = new Brain();
 }
 
-Cat::~Cat()
-{
-    putStr("Cat destructor called", CYAN);
+Cat::~Cat(){
+    putStr("Cat destructor called\n", RED);
+    delete _brain;
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy)
-{
-    putStr("Cat copy constructor called", CYAN);
+Cat::Cat(const Cat &copy) : Animal(copy){
+    putStr("Cat copy constructor called\n", CYAN);
     *this = copy;
 }
 
-Cat &Cat::operator=(const Cat &copy)
-{
-    std::cout << "Cat assignment operator called" << std::endl;
+Cat &Cat::operator=(const Cat &copy){
+    putStr("Cat assignment operator called\n", GREEN);
     if(this != &copy)
     {
         _brain = new Brain(*copy._brain);
@@ -29,17 +27,14 @@ Cat &Cat::operator=(const Cat &copy)
     return(*this);
 }
 
-void Cat::makeSound() const
-{
-    std::cout << "Meow meow" << std::endl;
+void Cat::makeSound() const{
+    putStr("Meaow Meaow\n", MAGENTA);
 }
 
-void Cat::setIdea(std::string ideia, int index)
-{
+void Cat::setIdea(std::string ideia, int index){
     _brain->setIdea(ideia,index);
 }
 
-std::string Cat::getIdea(int index)
-{
+t_string Cat::getIdea(int index){
     return(_brain->getIdea(index));
 }

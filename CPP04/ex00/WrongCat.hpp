@@ -2,6 +2,7 @@
 #define WRONGCAT_HPP
 
 #include "WrongAnimal.hpp"
+#include "Animal.hpp"
 
 class WrongCat : public WrongAnimal
 {

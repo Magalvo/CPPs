@@ -10,20 +10,20 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = ex01
 
 CC = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-SRC =  Animal.cpp Brain.cpp Cat.cpp Cat.cpp Dog.cpp WrongCat.cpp 
+SRC =  main.cpp Animal.cpp Brain.cpp Cat.cpp Dog.cpp WrongCat.cpp 
 
 MAIN = main.cpp
 
 SRCOBJ = obj/
 OBJ = $(addprefix $(SRCOBJ), $(notdir $(SRC:.cpp=.o)))
 
-HEADERS = Animal.hpp Cat.hpp Dog.hpp Brain.hpp WrongCat.hpp
+HEADERS = Animal.hpp Cat.hpp Dog.hpp Brain.hpp WrongCat.hpp WrongAnimal.hpp
 
 all: $(NAME)
 

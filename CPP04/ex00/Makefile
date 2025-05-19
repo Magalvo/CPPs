@@ -16,7 +16,7 @@ CC = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-SRC =  Animal.cpp Cat,cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp 
+SRC =  main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp 
 
 MAIN = main.cpp
 

@@ -1,51 +1,32 @@
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
-#include <iostream>
-#include <string>
 
-
-AMateria::AMateria()
-{
-    _type = "default";
-    // std::cout << "AMateria Default constructor called" << std::endl;
+void putStr(std::string str, std::string color){
+	std::cout << color << str << RESET;
 }
 
-AMateria::~AMateria()
-{
-    // std::cout << "AMateria Default destructor called" << std::endl;
+void putNum(int bits, std::string color){
+	std::cout << color << bits << RESET;
 }
 
-AMateria::AMateria(const AMateria &copy)
-{
-    //  std::cout << "AMateria copy constructor called" << std::endl;
-    *this = copy;
+AMateria::AMateria() {
 }
 
-AMateria &AMateria::operator=(const AMateria &copy)
-{
-    // std::cout << "AMateria assignment operator called" << std::endl;
-    if(this != &copy)
-    {
-        _type = copy._type;
-    }
-        
-    return(*this);
+AMateria::~AMateria() {
 }
 
-AMateria::AMateria(std::string const & type)
-{
-    _type = type;
+AMateria::AMateria(const AMateria &other) {
+	*this = other;
 }
 
-const std::string& AMateria::getType() const
-{
-    return _type;
+AMateria &AMateria::operator=(const AMateria &other) {
+	(void)other;
+	return *this;
 }
 
-void AMateria::use(ICharacter& target)
-{
-    if(target.getName() == "ice")
-        std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-    else if(target.getName() == "cure")
-        std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
+void AMateria::use(ICharacter &target) {
+	(void)target;
+}
+
+std::string const &AMateria::getType() const {
+	return _type;
 }

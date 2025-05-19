@@ -6,17 +6,17 @@
 #    By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/26 15:20:00 by dde-maga          #+#    #+#              #
-#    Updated: 2024/12/26 16:38:30 by dde-maga         ###   ########.fr        #
+#    Updated: 2024/12/27 12:27:24 by dde-maga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = Aaaaand..._OPEN!
 
 CC = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-SRC =  main.cpp clapTrap.cpp
+SRC =  main.cpp ClapTrap.cpp
 
 MAIN = main.cpp
 

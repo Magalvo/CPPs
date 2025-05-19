@@ -1,14 +1,12 @@
 #include "Animal.hpp"
 
-Animal::Animal()
-{
+Animal::Animal(){
     type = "Default Animal";
     putStr("Animal constructor called\n", CYAN);
 }
 
-Animal::~Animal()
-{
-    putStr("Animal destrutor called\n", CYAN);
+Animal::~Animal(){
+    putStr("Animal destrutor called\n", RED);
 }
 
 Animal::Animal(const Animal &copy)
@@ -25,7 +23,7 @@ Animal &Animal::operator=(const Animal &copy)
     return (*this);
 }
 
-std::string Animal::getType() const
+t_string Animal::getType() const
 {
     return(type);
 }

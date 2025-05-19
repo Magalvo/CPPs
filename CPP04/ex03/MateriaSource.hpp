@@ -1,25 +1,20 @@
-#ifndef MATERIASOURCE_HPP
-#define MATERIASOURCE_HPP
-
+#ifndef MateriaSource_HPP
+#define MateriaSource_HPP
 
 #include <iostream>
-#include <string>
 #include "IMateriaSource.hpp"
-#include "AMateria.hpp"
 
-class MateriaSource : public IMateriaSource
-{
-    protected:
-    AMateria *_materia[4];
-    public:
-    MateriaSource();
-    MateriaSource(const MateriaSource &copy);
-    ~MateriaSource();
-    MateriaSource &operator=(const MateriaSource &copy);
-    void learnMateria(AMateria *);
-    AMateria* createMateria(std::string const & type);
-
-
+//? Derived Classes
+class MateriaSource : public IMateriaSource {
+	private:
+		AMateria* _materia[4];
+	public:
+		MateriaSource();
+		MateriaSource(const MateriaSource& src);
+		~MateriaSource();
+		MateriaSource &operator=(const MateriaSource& src);
+		void learnMateria(AMateria* materia);
+		AMateria* createMateria(std::string const & type);
 };
 
 #endif

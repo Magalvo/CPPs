@@ -5,25 +5,25 @@
 
 WrongCat::WrongCat()
 {
-    std::cout << "WrongCat Default constructor called" << std::endl;
+    putStr("WrongCat Default constructor called", GREEN);
     type = "Wrongcat";
     _brain = new Brain();
 }
 
 WrongCat::~WrongCat()
 {
-    std::cout << "WrongCat Default destructor called" << std::endl;
+    putStr("WrongCat Default destructor called", RED);
     delete _brain;
 }
 
 WrongCat::WrongCat(const WrongCat &copy) : Animal(copy)
 {
-    std::cout << "WrongCat Copy constructor called" << std::endl;
+    putStr("WrongCat Copy constructor called", CYAN);
     *this = copy;
 }
 WrongCat &WrongCat::operator=(const WrongCat &copy)
 {
-   std::cout << "Dog assignment operator called" << std::endl;
+    putStr("Dog assignment operator called\n", CYAN);
     if(this != &copy)
     {
         _brain = new Brain(*copy._brain);
@@ -31,6 +31,7 @@ WrongCat &WrongCat::operator=(const WrongCat &copy)
     }   
     return(*this);
 }
+
 
 void WrongCat::setIdea(std::string ideia, int index)
 {

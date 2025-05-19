@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#pragma once
 #include <iostream>
 #include <string>
 
@@ -32,5 +31,3 @@ class Cat : public Animal
     void setIdea(std::string ideia,int index);
     std::string getIdea(int index);
 };
-
-#endif

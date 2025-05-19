@@ -1,41 +1,27 @@
 #include "Cure.hpp"
-#include "AMateria.hpp"
 
-#include <iostream>
-
-
-Cure::Cure() : AMateria("cure")
-{
-    // std::cout << "Cure Default constructor called" << std::endl;
+Cure::Cure() : AMateria() {
+	_type = "cure";
 }
 
-Cure::~Cure() 
-{
-    // std::cout << "Cure Default destructor called" << std::endl;
+Cure::Cure(const Cure &src) : AMateria() {
+	*this = src;
 }
 
-Cure::Cure(std::string const & type) : AMateria(type)
-{    
+Cure::~Cure() {}
+
+Cure& Cure::operator=(const Cure &src) {
+	_type = src._type;
+	return (*this);
 }
 
-Cure::Cure(const Cure &copy) : AMateria(copy)
-{
-    *this = copy;
+AMateria* Cure::clone() const {
+	return new Cure(*this);
 }
 
-Cure &Cure::operator=(const Cure &copy)
-{
-    // std::cout << "Cure assignment operator called" << std::endl;
-    (void)copy;
-    return(*this);
-}
-
-AMateria* Cure::clone() const
-{
-    return new Cure(*this);
-}
-
-void Cure::use(ICharacter& target)
-{
-        std::cout << "* heals " << target.getName() << "’s wounds *" << std::endl;
+void Cure::use(ICharacter &target) {
+	putStr("* ", RESET);
+	putStr("heals ❤️  ", GREEN_BLINK);
+	putStr(target.getName(), CYAN_BOLD);
+	putStr("'s wounds * \n", CYAN);
 }

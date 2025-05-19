@@ -3,12 +3,12 @@
 
 Brain::Brain()
 {
-    std::cout << "Brain Default Constructor called" << std::endl;
+    putStr( "Brain Default Constructor called\n",GREEN);
 }
 
 Brain::~Brain()
 {
-    std::cout << "Brain Default Destuctor called" << std::endl;
+    putStr( "Brain Default Destuctor called\n",RED);
 }
 
 Brain::Brain(std::string myideas[100])
@@ -19,14 +19,13 @@ Brain::Brain(std::string myideas[100])
 
 Brain::Brain(const Brain &copy)
 {
-    std::cout << "Brain copy constructor called" << std::endl;
+    putStr( "Brain copy constructor called\n",CYAN);
     *this = copy;
 }
 
-//?Assignment operator
 Brain &Brain::operator=(const Brain &copy)
 {
-    std::cout << "Brain assignment operator called" << std::endl;
+    putStr( "Brain assignment operator called\n",CYAN);
     if(this != &copy)
     {
        for(int i = 0; i < 100; i++)
@@ -35,25 +34,23 @@ Brain &Brain::operator=(const Brain &copy)
     return(*this);
 }
 
-//?setter
 void Brain::setIdea(std::string idea, int index)
 {
     if(!(index >= 100 || index < 0))
     {
         ideas[index] = idea;
-        std::cout << "Saved Idea" << std::endl;
+        putStr("Saved Idea\n", MAGENTA);
         return;
-    }   
-    std::cout << "Index Incorret please send a correct index" << std::endl;
+    }
+    putStr("Index Incorret please send a correct index\n", CYAN); 
 }
 
-//?getter
 std::string Brain::getIdea(int index)
 {
     if(!(index >= 100 || index < 0))
     {
         if(!ideas[index].empty())
             return(ideas[index]);
-    } 
-    return("Index Incorret or Empty please send a correct index");
+    }
+    return("Index Incorret or Empty please send a correct index\n");
 }

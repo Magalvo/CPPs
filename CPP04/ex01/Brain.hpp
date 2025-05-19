@@ -3,9 +3,8 @@
 
 #include "Animal.hpp"
 
-class Brain
-{
-    private:
+class Brain {
+	private:
     std::string ideas[100];
     public:
     Brain();
@@ -16,5 +15,4 @@ class Brain
     void setIdea(std::string idea, int index);
     std::string getIdea(int index);
 };
-
 #endif

@@ -1,26 +1,30 @@
 #include "Dog.hpp"
 #include "Animal.hpp"
 
+#include <iostream>
+
 Dog::Dog() : Animal()
 {
+    putStr("Dog constructor called",CYAN);
     type = "Dog";
-    putStr("Dog constructor called\n", CYAN);
+    _brain = new Brain();
 }
 
 Dog::~Dog()
 {
-    putStr("Dog destructor called", CYAN);
+    putStr("Dog destructor called\n", RED);
+    delete _brain;
 }
 
 Dog::Dog(const Dog &copy) : Animal(copy)
 {
-    putStr("Dog copy constructor called", CYAN);
+    putStr("Dog copy constructor called\n", CYAN);
     *this = copy;
 }
 
 Dog &Dog::operator=(const Dog &copy)
 {
-    std::cout << "Dog assignment operator called" << std::endl;
+    putStr("Dog assignment operator called\n", CYAN);
     if(this != &copy)
     {
         type = copy.type;
@@ -31,7 +35,7 @@ Dog &Dog::operator=(const Dog &copy)
 
 void Dog::makeSound() const
 {
-    std::cout << "Woof woof" << std::endl;
+    putStr("Woof woof\n", MAGENTA);
 }
 
 void Dog::setIdea(std::string ideia, int index)

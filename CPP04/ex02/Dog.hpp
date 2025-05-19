@@ -18,19 +18,17 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Dog : public Animal
-{
-    private:
-    Brain *_brain;
-    public:
-    Dog();
-    ~Dog();
-    Dog(const Dog &copy);
-    Dog &operator=(const Dog &copy);
-    void makeSound() const;
+typedef std::string t_string;
 
-    void setIdea(std::string ideia,int index);
-    std::string getIdea(int index);
+class Dog : public Animal {
+	private:
+		Brain *_brain;
+	public:
+		Dog();
+		~Dog();
+		Dog(const Dog &other);
+		Dog &operator=(const Dog &other);
+		void makeSound() const;
+		Brain *getBrain() const;
 };
-
 #endif

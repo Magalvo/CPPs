@@ -24,16 +24,18 @@
 #define CYAN_BOLD "\033[1;36m"
 #define CYAN "\033[0;36m"
 
+typedef std::string t_string;
+
 class Animal
 {
     protected:
-    std::string type;
+    t_string type;
     public:
     Animal();
     virtual ~Animal();
     Animal(const Animal &copy);
     Animal &operator=(const Animal &copy);
-    std::string getType() const;
+    t_string getType() const;
     virtual void makeSound() const;
 };
 

@@ -4,27 +4,24 @@
 #include "Brain.hpp"
 
 
-WrongCat::WrongCat()
-{
-    std::cout << "WrongCat Default constructor called" << std::endl;
+WrongCat::WrongCat(){
+    putStr("WrongCat Default constructor called\n", GREEN);
     type = "Wrongcat";
     _brain = new Brain();
 }
 
-WrongCat::~WrongCat()
-{
-    std::cout << "WrongCat Default destructor called" << std::endl;
+WrongCat::~WrongCat(){
+    putStr("WrongCat Default destructor called", RED);
     delete _brain;
 }
 
-WrongCat::WrongCat(const WrongCat &copy) : Animal(copy)
-{
-    std::cout << "WrongCat Copy constructor called" << std::endl;
+WrongCat::WrongCat(const WrongCat &copy) : Animal(copy){
+    putStr("WrongCat Copy constructor called\n", CYAN_BOLD);
     *this = copy;
 }
-WrongCat &WrongCat::operator=(const WrongCat &copy)
-{
-   std::cout << "Dog assignment operator called" << std::endl;
+
+WrongCat &WrongCat::operator=(const WrongCat &copy){
+    putStr("WrongCat assignment operator called\n", CYAN_BOLD);
     if(this != &copy)
     {
         _brain = new Brain(*copy._brain);
@@ -33,12 +30,10 @@ WrongCat &WrongCat::operator=(const WrongCat &copy)
     return(*this);
 }
 
-void WrongCat::setIdea(std::string ideia, int index)
-{
+void WrongCat::setIdea(std::string ideia, int index){
     _brain->setIdea(ideia,index);
 }
 
-std::string WrongCat::getIdea(int index)
-{
+t_string WrongCat::getIdea(int index){
     return(_brain->getIdea(index));
 }

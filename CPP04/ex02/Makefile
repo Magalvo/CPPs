@@ -10,13 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex00
+NAME = ex02
 
 CC = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-SRC =  Animal.cpp Brain.cpp Cat.cpp Cat.cpp Dog.cpp WrongCat.cpp 
+SRC =  main.cpp Animal.cpp Brain.cpp Cat.cpp Dog.cpp WrongCat.cpp 
 
 MAIN = main.cpp
 

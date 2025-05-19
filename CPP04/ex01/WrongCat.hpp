@@ -1,9 +1,11 @@
 #ifndef WRONGCAT_HPP
-#define WRONGCAT_HPP
+# define WRONGCAT_HPP
 
+#include <iostream>
 #include "WrongAnimal.hpp"
 #include "Brain.hpp"
 #include "Animal.hpp"
+#include <string>
 
 class WrongCat : public Animal
 {
@@ -16,7 +18,6 @@ class WrongCat : public Animal
     WrongCat &operator=(const WrongCat &copy);
     void setIdea(std::string ideia,int index);
     std::string getIdea(int index);
-
 };
 
 #endif

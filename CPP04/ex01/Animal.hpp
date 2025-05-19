@@ -24,6 +24,8 @@
 #define CYAN_BOLD "\033[1;36m"
 #define CYAN "\033[0;36m"
 
+typedef std::string t_string;
+
 class Animal
 {
     protected:
@@ -37,7 +39,7 @@ class Animal
     virtual void makeSound() const;
 };
 
-void putStr(std::string str, std::string color);
-void putNum(int bits, std::string color);
+void putStr(t_string str, t_string color);
+void putNum(int bits, t_string color);
 
 #endif

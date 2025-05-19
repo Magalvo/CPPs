@@ -2,6 +2,7 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <sstream>
 #include <iomanip>
 #include <string>
 #include <cstdlib>
@@ -29,8 +30,8 @@ public:
     static void convert(std::string stringLiteral);
 };
 
-void putStr(std::string str, std::string color);
-void putNum(int bits, std::string color);
-void putErr(std::string str, std::string color);
+void putStr(const std::string &str, const std::string &color);
+void putNum(int bits, const std::string &color);
+void putErr(const std::string &str, const std::string &color);
 
 #endif

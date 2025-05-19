@@ -6,33 +6,33 @@
 /*   By: dde-maga <dde-maga@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 15:20:32 by dde-maga          #+#    #+#             */
-/*   Updated: 2024/12/26 17:46:55 by dde-maga         ###   ########.fr       */
+/*   Updated: 2024/12/27 13:25:07 by dde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _name("name"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap() : _name("name"), _hitPoints(10), _energyPoints(10), _attackDamage(0), _maxHitPoints(10)
 {
     putStr("default constructor method call: ", CYAN);
     putStr("ClapTrap ", GREEN);
-    putStr(_name,GREEN);
-    putStr(" is born\n\n", RESET);
+    putStr(_name,YELLOW);
+    putStr(" is born!\n\n", RESET);
 }
 
 ClapTrap::~ClapTrap(){
     putStr("Destructor method call: ", RED);
-    putStr("ClapTrap ", RESET);
-    putStr(_name,GREEN);
-    putStr(" has been destructed!\n\n", RESET);
+    putStr("ClapTrap ", GREEN);
+    putStr(_name,YELLOW);
+    putStr(" has been destroyed!\n\n", RESET);
 }
 
-ClapTrap::ClapTrap(std::string nameParam) : _name(nameParam), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(std::string nameParam) : _name(nameParam), _hitPoints(10), _energyPoints(10), _attackDamage(0), _maxHitPoints(10)
 {
     putStr("\nCustom constructor method call: ", CYAN_BOLD);
     putStr("ClapTrap ", GREEN);
-    putStr(_name,GREEN);
-    putStr(" is born\n\n", RESET);
+    putStr(_name,YELLOW);
+    putStr(" is born!\n\n", RESET);
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
@@ -41,9 +41,10 @@ ClapTrap::ClapTrap(const ClapTrap& other)
     this->_hitPoints = other._hitPoints;
     this->_energyPoints = other._energyPoints;
     this->_attackDamage = other._attackDamage;
+    this->_maxHitPoints = other._maxHitPoints;
     putStr("Copy constructor method call: ", CYAN_BOLD);
     putStr("ClapTrap ", GREEN);
-    putStr(_name,GREEN);
+    putStr(_name,YELLOW);
     putStr("\n\n", RESET);
 }
 
@@ -53,9 +54,10 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
     this->_hitPoints = other._hitPoints;
     this->_energyPoints = other._energyPoints;
     this->_attackDamage = other._attackDamage;
+    this->_maxHitPoints = other._maxHitPoints;
     putStr("Assignment operator method call: ", CYAN_BOLD);
     putStr("ClapTrap ", GREEN);
-    putStr(_name,GREEN);
+    putStr(_name,YELLOW);
     putStr("\n\n", RESET);    
     return(*this);
 }
@@ -63,13 +65,13 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 void ClapTrap::attack(const std::string& target)
 {
     if(this->_energyPoints > 0){
-        putStr("ClapTrap ", RESET);
+        putStr("ClapTrap ", YELLOW);
         putStr(_name,GREEN);
         putStr(" attacks ", RED_BLINK);
         putStr(target, CYAN);
         putStr(", causing ", RESET);
         putNum(_attackDamage, RED);
-        putStr(" points of damage!\n", RED);
+        putStr(" points of damage!\n\n", RED);
 
         this->_energyPoints -= 1;
 
@@ -80,26 +82,25 @@ void ClapTrap::attack(const std::string& target)
         putStr(" points of energy \n\n", CYAN);
         return ;
     }else{
-        putStr("ClapTrap ", RESET);
-        putStr(_name,GREEN);
+        putStr("ClapTrap ", GREEN);
+        putStr(_name,YELLOW);
         putStr(" is unable to attack, not enough ", RESET);
         putStr(" energy points!\n\n", CYAN);
     }
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
-    putStr("ClapTrap ", RESET);
-    putStr(_name,GREEN);
+    putStr("ClapTrap ", GREEN);
+    putStr(_name,YELLOW);
     putStr(" took ", RESET);
     putNum(amount, RED);
-    putStr(" points of damage!\n", RED);
+    putStr(" points of damage!\n\n", RED);
     if (this->_hitPoints <= amount){
         this->_hitPoints = 0;
-        putStr("ClapTrap ", RESET);
+        putStr("ClapTrap ", GREEN);
         putStr(_name,GREEN);
-        putStr(" has now ", RESET);
-        putNum(_hitPoints, RED);
-        putStr(" hit points.\n\n", RED);
+        putStr(" has died!\n\n", RED);
+        return ;
     }else{
         this->_hitPoints -= amount;
     }
@@ -112,8 +113,8 @@ void ClapTrap::takeDamage(unsigned int amount){
 
 void ClapTrap::beRepaired(unsigned int amount){
    if (amount <= _energyPoints){
-    putStr("ClapTrap ", RESET);
-    putStr(_name,GREEN);
+    putStr("ClapTrap ", GREEN);
+    putStr(_name,YELLOW);
     putStr(" is repaired for ", RESET);
     putNum(amount, GREEN);
     putStr(" points!\n", GREEN);
@@ -130,8 +131,8 @@ void ClapTrap::beRepaired(unsigned int amount){
     putNum(_energyPoints, CYAN_BOLD);
     putStr(" energy points.\n\n", CYAN_BOLD);
    }else{
-    putStr("ClapTrap ", RESET);
-    putStr(_name,GREEN);
+    putStr("ClapTrap ", GREEN);
+    putStr(_name,YELLOW);
     putStr(" has not the ", RESET);
     putNum(amount, CYAN_BOLD);
     putStr(" energy points to be repaired!\n\n", CYAN);
