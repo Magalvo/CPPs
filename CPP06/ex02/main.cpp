@@ -22,11 +22,11 @@ Base * generate(void)
 void identify(Base* p)
 {
 	if (dynamic_cast<A*>(p))
-		std::cout << "A" << std::endl;
+		putStr("A\n", CYAN);
 	else if (dynamic_cast<B*>(p))
-		std::cout << "B" << std::endl;
+		putStr("B\n", CYAN);
 	else if (dynamic_cast<C*>(p))
-		std::cout << "C" << std::endl;
+		putStr("C\n", CYAN);
 }
 
 void identify(Base& p)
@@ -35,15 +35,15 @@ void identify(Base& p)
 
 	try {
 		test = dynamic_cast<A&>(p);
-		std::cout << "A" << std::endl;
+		putStr("A\n", CYAN);
 	} catch (std::exception &e) {}
 	try {
 		test = dynamic_cast<B&>(p);
-		std::cout << "B" << std::endl;
+		putStr("B\n", CYAN);
 	} catch (std::exception &e) {}
 	try {
 		test = dynamic_cast<C&>(p);
-		std::cout << "C" << std::endl;
+		putStr("C\n", CYAN);
 	} catch (std::exception &e) {}
 
 }
