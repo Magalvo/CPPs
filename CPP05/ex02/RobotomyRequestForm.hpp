@@ -14,14 +14,12 @@ private:
     virtual void performAction() const;
 
 public:
-    // Constructors
     RobotomyRequestForm();
     RobotomyRequestForm(const std::string target);
     RobotomyRequestForm(const RobotomyRequestForm &other);
     RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
     ~RobotomyRequestForm();
 
-    // exceptions
     class RobotizationFailed : public std::exception
     {
     public:

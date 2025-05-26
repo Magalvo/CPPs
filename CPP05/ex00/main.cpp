@@ -13,7 +13,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RED);
     }
 
     // ? HIGH
@@ -25,7 +25,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RED);
     }
 
     // ------------------------------------------------------------
@@ -44,7 +44,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RED);
     }
     std::cout << GREEN << bob << RESET;
 
@@ -56,7 +56,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RED);
     }
     std::cout << GREEN << bob << RESET;
 
@@ -71,7 +71,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RED);
     }
     std::cout << GREEN << tim << RESET;
 
@@ -83,7 +83,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RED);
     }
     std::cout << GREEN << tim << RESET;
 

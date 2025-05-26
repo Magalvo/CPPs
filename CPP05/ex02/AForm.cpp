@@ -22,7 +22,6 @@ AForm::~AForm()
 {
 }
 
-// Member function
 void AForm::beSigned(const Bureaucrat &bureaucrat)
 {
     if (bureaucrat.getGrade() <= _sign_grade)

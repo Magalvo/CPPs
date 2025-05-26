@@ -26,7 +26,6 @@ $(NAME): $(OBJ) $(HEADERS)
 
 clean:
 	@rm -rf $(SRCOBJ)
-	@rm Hello_shrubbery
 	@echo "Object files deleted."
 
 fclean: clean

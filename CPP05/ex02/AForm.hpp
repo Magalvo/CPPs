@@ -19,14 +19,12 @@ private:
 	virtual void performAction() const = 0;
 
 public:
-	// Constructors
 	AForm();
 	AForm(const std::string name, const int sign_grade, const int execute_grade);
 	AForm(const AForm &other);
 	AForm &operator=(const AForm &other);
 	~AForm();
 
-	// Member fonctions
 	void beSigned(const Bureaucrat &bureaucrat);
 	std::string getName() const;
 	bool getIsSigned() const;

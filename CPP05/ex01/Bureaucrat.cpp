@@ -59,11 +59,9 @@ void Bureaucrat::signForm(Form &form)
 	catch(const std::exception& e)
 	{
         putStr(_name + " couldn't sign " + form.getName() + " -> " + e.what() + "\n", RED);
-		// std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
 		return;
 	}
     putStr(_name + " signed " + form.getName() + "\n", CYAN);
-	// std::cout << _name << " signed " << form.getName() << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &other)

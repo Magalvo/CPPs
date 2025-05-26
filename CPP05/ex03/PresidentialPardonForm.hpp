@@ -12,7 +12,6 @@ private:
     virtual void performAction() const;
 
 public:
-    // Constructors
     PresidentialPardonForm();
     PresidentialPardonForm(const std::string target);
     PresidentialPardonForm(const PresidentialPardonForm &other);

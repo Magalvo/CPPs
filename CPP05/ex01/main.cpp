@@ -4,11 +4,7 @@
 int main(void)
 {
     putStr("\nTest 01\n", CYAN_BOLD);
-    std::cout << "\033[33m" << std::endl
-              << "Test ex01" << "\033[0m" << std::endl;
     putStr("\nTest too high and too low creation\n", CYAN_BOLD);
-    std::cout << "\033[33m" << std::endl
-              << "Test too high and too low creation" << "\033[0m" << std::endl;
     try
     {
         Bureaucrat Sleeper1("Bernd", 1500);
@@ -17,7 +13,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RESET);
     }
 
     try
@@ -28,12 +24,10 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RESET);
     }
     putStr("\nTest 02\n", CYAN_BOLD);
-    putStr("\n Test increasing\n", CYAN_BOLD);
-    std::cout << "\033[33m" << std::endl
-              << "Test increasing" << "\033[0m" << std::endl;
+    putStr("\nTest increasing\n", CYAN_BOLD);
     Bureaucrat bob("Bob", 2);
     std::cout << bob;
     try
@@ -44,7 +38,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RESET);
     }
     std::cout << bob;
 
@@ -56,14 +50,12 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RESET);
     }
     std::cout << bob;
 
     putStr("\nTest 03\n", CYAN_BOLD);
-    putStr("\n Test decreasing\n", CYAN_BOLD);
-    std::cout << "\033[33m" << std::endl
-              << "Test decreasing" << "\033[0m" << std::endl;
+    putStr("\nTest decreasing\n", CYAN_BOLD);
     Bureaucrat tim("Tim", 149);
     std::cout << tim;
     try
@@ -74,7 +66,7 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RESET);
     }
     std::cout << tim;
 
@@ -86,15 +78,12 @@ int main(void)
     {
         putStr("Exception caught: ", RED);
         putStr(e.what(), RED);
-        std::cout << std::endl;
+        putStr("\n", RESET);    
     }
     std::cout << tim;
 
     putStr("\nTest 04\n", CYAN_BOLD);
     putStr("Test sign form\n", CYAN_BOLD);
-    std::cout << "\033[33m" << std::endl
-              << "Test ex01" << "\033[0m" << std::endl;
-
     Form id_form("ID FORM", 100, 90);
     Bureaucrat mr_slow("MR SLOW", 150);
     Bureaucrat mr_id("MR_ID", 100);
