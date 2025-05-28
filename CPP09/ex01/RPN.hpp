@@ -1,13 +1,15 @@
 #ifndef RPN_HPP
-#define RPN_HPP
-#pragma once
+# define RPN_HPP
+# pragma once
 
-#include <exception>
-#include <iostream> 
-#include <map>
-#include <sstream>
-#include <string>
-#include <stack>
+# include <iostream>
+# include <string>
+# include <stdexcept>
+# include <sstream>
+# include <stack>
+# include <list>
+# include <algorithm>
+# include <iomanip>
 
 #define RESET "\033[0m"
 #define RED "\033[1;31m"
@@ -18,43 +20,24 @@
 #define CYAN_BOLD "\033[1;36m"
 #define CYAN "\033[0;36m"
 
-class RPM {
-    private:
-        static double add (double a, double b);
-        static double sub (double a, double b);
-        static double mlt (double a, double b);
-        static double div (double a, double b);
 
-        static bool isTerm(const std::string &str);
-        static bool isOperator(const std::string &str);
-        static bool isNumber(const std::string &str);
-        static double toNumber(const std::string &str);
-        static void checkStackSize(const std::stack<double> &stack, size_t size);
+class RPN {
+	private:
+		std::stack<double, std::list<double> > _stack;
+		RPN(const RPN &other);
+		RPN &operator=(const RPN &other);
+		bool isOperator(const std::string &token);
+		double calculate(double a, double b, const std::string &op);
+		void checkExpression(const std::string &expression);
 
-    protected:
-        RPN(void):
-        RPN(RPN const &other) = delete,
-        RPN &operator=(RPN const &other) = delete;
-
-    public:
-        ~RPM();
-
-        static double calculate(const std::string &expression);
-    
-    class exception : public std::exception {
-        public:
-            exception(const std::string &msg) : _msg(msg) {}
-            virtual ~exception() throw() {}
-            virtual const char *what() const throw() {
-                return _msg.c_str();
-            }
-        private:
-            std::string _msg;
-    };
+	public:
+		RPN();
+		~RPN();
+		void parse(int argc, char **argv);
 };
 
+
 void putStr(std::string str, std::string color);
-void putNum(int bits, std::string color);
 void putErr(std::string str, std::string color);
 
-#endif // RPN_HPP
+#endif
