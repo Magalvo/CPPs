@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
 # include <iostream>
 # include <vector>
@@ -31,7 +32,7 @@ class Span {
         Span &operator=(const Span &other);
 
         void addNumber(int num);
-		
+
         template <typename Iterator>
         void addNumbers(Iterator begin, Iterator end) {
             if (std::distance(begin, end) > static_cast<long>(_n - _v.size()))
@@ -48,3 +49,5 @@ class Span {
 void putStr(std::string str, std::string color);
 void putNum(int bits, std::string color);
 void putErr(std::string str, std::string color);
+
+#endif

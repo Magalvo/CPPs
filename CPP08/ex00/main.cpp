@@ -22,7 +22,7 @@ int main() {
 	std::list<int> lst(arr2, arr2 + sizeof(arr2) / sizeof(int));
 
 	try {
-		putStr("\nFound: ", GREEN);
+		putStr("Found: ", GREEN);
 		putNum(easyfind(vec, 3), GREEN);
 		putStr("\nFound: ", GREEN);
 		putNum(easyfind(lst, 20), GREEN);

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EASYFIND_HPP
+# define EASYFIND_HPP
 
 #include <iostream>
 #include <algorithm>
@@ -24,3 +25,5 @@ int easyfind(T &container, int value)
 		throw std::runtime_error("Value not found");
 	return *it;
 }
+
+#endif

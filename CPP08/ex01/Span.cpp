@@ -21,14 +21,13 @@ void Span::addNumber(int num) {
     if (_v.size() >= _n)
         throw std::runtime_error("Span is full");
     _v.push_back(num);
-    
+    _isSorted = false;
 }
 
 int Span::shortestSpan() {
     if (_v.size() < 2)
         throw std::runtime_error("Not enough elements to calculate span");
 
-    
     if (!_isSorted) {
         std::sort(_v.begin(), _v.end());
         _isSorted = true;
