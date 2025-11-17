@@ -9,10 +9,10 @@
 template <typename T>
 class MutantStack : public std::stack<T> {
 public:
-	typedef typename std::deque<T>::iterator iterator;
-	typedef typename std::deque<T>::const_iterator const_iterator;
-	typedef typename std::deque<T>::reverse_iterator reverse_iterator;
-	typedef typename std::deque<T>::const_reverse_iterator const_reverse_iterator;
+	typedef typename std::stack<T>::iterator iterator;
+	typedef typename std::stack<T>::const_iterator const_iterator;
+	typedef typename std::stack<T>::reverse_iterator reverse_iterator;
+	typedef typename std::stack<T>::const_reverse_iterator const_reverse_iterator;
 
 	MutantStack() : std::stack<T>() {}
 	MutantStack(const MutantStack &other) : std::stack<T>(other) {}

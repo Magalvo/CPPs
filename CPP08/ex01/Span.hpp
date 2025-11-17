@@ -1,14 +1,12 @@
-#ifndef Span_HPP
-# define Span_HPP
+#pragma once
 
 # include <iostream>
 # include <vector>
 # include <algorithm>
 # include <stdexcept>
 # include <limits>
-#include <cstdlib>
-#include <ctime>
-#pragma once
+# include <cstdlib>
+# include <ctime>
 
 #define RESET "\033[0m"
 #define RED "\033[1;31m"
@@ -20,24 +18,33 @@
 #define CYAN "\033[0;36m"
 
 class Span {
-	private:
-		unsigned int _n;
-		std::vector<int> v;
+    private:
+        unsigned int _n;
+        std::vector<int> _v;
+        bool _isSorted;
 
-	public:
-		Span();
-		Span(unsigned int N);
-		~Span();
-		Span(const Span &other);
-		Span &operator=(const Span &other);
-		void addNumber(int num);
-		int shortestSpan();
-		int longestSpan();
-		void fillVector();
+    public:
+        Span();
+        Span(unsigned int N);
+        ~Span();
+        Span(const Span &other);
+        Span &operator=(const Span &other);
+
+        void addNumber(int num);
+		
+        template <typename Iterator>
+        void addNumbers(Iterator begin, Iterator end) {
+            if (std::distance(begin, end) > static_cast<long>(_n - _v.size()))
+                throw std::runtime_error("Not enough space in Span");
+            
+            _v.insert(_v.end(), begin, end);
+            _isSorted = false;
+        }
+
+        int shortestSpan();
+        int longestSpan();
 };
 
 void putStr(std::string str, std::string color);
 void putNum(int bits, std::string color);
 void putErr(std::string str, std::string color);
-
-#endif
