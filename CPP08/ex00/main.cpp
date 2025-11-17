@@ -1,4 +1,4 @@
-#include "Easyfind.hpp"
+#include "easyfind.hpp"
 
 void putStr(std::string str, std::string color)
 {
