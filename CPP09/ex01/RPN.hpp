@@ -1,6 +1,8 @@
 #ifndef RPN_HPP
 # define RPN_HPP
 # pragma once
+# define RPN_HPP
+# pragma once
 
 # include <iostream>
 # include <string>

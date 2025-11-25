@@ -7,7 +7,7 @@ int main(void)
     // ? LOW
     try
     {
-        Bureaucrat Sleeper1("Bernd", 1500);
+        Bureaucrat Sleeper1("Bernardo", 1500);
     }
     catch (const std::exception &e)
     {
@@ -19,7 +19,7 @@ int main(void)
     // ? HIGH
     try
     {
-        Bureaucrat Sleeper2("Olaf", -10);
+        Bureaucrat Sleeper2("Olek", -10);
     }
     catch (const std::exception &e)
     {
@@ -35,7 +35,19 @@ int main(void)
     Bureaucrat bob("Bob", 2);
 
     std::cout << GREEN << bob << RESET;
-
+    //? (-1) (Increment Grade)
+    try
+    {
+        bob.incrementGrade();
+    }
+    catch (const std::exception &e)
+    {
+        putStr("Exception caught: ", RED);
+        putStr(e.what(), RED);
+        putStr("\n", RED);
+    }
+    std::cout << GREEN << bob << RESET;
+    //? (-1) (Increment Grade)
     try
     {
         bob.incrementGrade();
@@ -48,21 +60,12 @@ int main(void)
     }
     std::cout << GREEN << bob << RESET;
 
-    try
-    {
-        bob.incrementGrade();
-    }
-    catch (const std::exception &e)
-    {
-        putStr("Exception caught: ", RED);
-        putStr(e.what(), RED);
-        putStr("\n", RED);
-    }
-    std::cout << GREEN << bob << RESET;
+    // ============================================
 
     putStr("\nTest decreasing\n", CYAN_BOLD);
     Bureaucrat tim("Tim", 149);
     std::cout << GREEN << tim << RESET;
+    //? (+1) (Decrement Grade)
     try
     {
         tim.decrementGrade();
@@ -74,7 +77,7 @@ int main(void)
         putStr("\n", RED);
     }
     std::cout << GREEN << tim << RESET;
-
+    //? (+1) (Decrement Grade)
     try
     {
         tim.decrementGrade();
