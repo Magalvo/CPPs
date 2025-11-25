@@ -20,18 +20,21 @@
 #define CYAN_BOLD "\033[1;36m"
 #define CYAN "\033[0;36m"
 
-class BitcoinExchange {
-	private:
-		std::map<std::string, double> _data;
-		BitcoinExchange(const BitcoinExchange &other);
-		BitcoinExchange &operator=(const BitcoinExchange &other);
-		void get_data();
+class BitcoinExchange
+{
+    private:
+        std::map<std::string, float> _data;
+        std::ifstream _file;
 
-	public:
-		BitcoinExchange();
-		~BitcoinExchange();
-		void execute(int argc,char **argv);
-		void outputData(const std::string& date, double btc_amount);
+    public:
+        BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange &copy);
+        BitcoinExchange &operator=(const BitcoinExchange &assign);
+        ~BitcoinExchange();
+
+        void readDb(std::string filename);
+        void run(std::string filename);
+        bool parseDate(std::string date);
 };
 
 void putStr(std::string str, std::string color);

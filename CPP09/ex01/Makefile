@@ -4,7 +4,7 @@ CC = c++
 
 FLAGS = -Wall -Wextra -Werror -g -std=c++98
 
-SRC = main.cpp RPN.cpp
+SRC = RPN.cpp main.cpp 
 
 MAIN = main.cpp
 

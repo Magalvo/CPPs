@@ -1,203 +1,145 @@
 #include "BitcoinExchange.hpp"
 
-template<typename T>
-std::string toString(T value, int precision = 2) {
-    std::ostringstream oss;
-    oss << std::fixed << std::setprecision(precision) << value;
-    return oss.str();
-}
+BitcoinExchange::BitcoinExchange() {}
 
-void putStr(std::string str, std::string color)
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy)
 {
-    std::cout << color << str << RESET;
+    *this = copy;
 }
 
-void putNum(double v, std::string const& color, int prec = 2) {
-    std::cout << color << toString(v,prec) << RESET;
-}
-
-void putErr(std::string str, std::string color)
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &assign)
 {
-    std::cerr << color << str << RESET;
-}
-
-BitcoinExchange::BitcoinExchange() {
-	get_data();
-}
-
-BitcoinExchange::~BitcoinExchange() {
-}
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) {
-	*this = other;
-}
-
-BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
-	(void)other;
-	return *this;
-}
-
-void BitcoinExchange::get_data() {
-	std::ifstream file("data.csv");
-	if (!file.is_open()) {
-		throw std::runtime_error("Error data.csv: file not found");
-	}
-
-	std::string line;
-	std::getline(file, line);
-	if (line != "date,exchange_rate") {
-		throw std::runtime_error("Error data.csv: invalid file format");
-	}
-
-	while (std::getline(file, line)) {
-		std::istringstream iss(line);
-		std::string date;
-		double btc_data;
-		
-		std::getline(iss, date, ',');
-		iss >> btc_data;
-		_data[date] = btc_data;
-	}
-}
-
-void removeSpaces(std::string &str) {
-	str.erase(std::remove(str.begin(), str.end(), ' '), str.end());
-}
-
-
-bool isValidDateString(const std::string& date, int& _year, int& _month, int& _day) {
-    if (date.size() != 10 ||
-        date[4] != '-'  || date[7] != '-')
-        return false;
-    for (int i = 0; i < 10; ++i) {
-        if (i == 4 || i == 7) continue;
-        if (!std::isdigit(static_cast<unsigned char>(date[i]))) 
-            return false;
+    if (this != &assign)
+    {
+        this->_data = assign._data;
     }
-    _year = std::atoi(date.substr(0,4).c_str());
-    _month = std::atoi(date.substr(5,2).c_str());
-    _day = std::atoi(date.substr(8,2).c_str());
-    if (_year < 2009 || _month < 1 || _month > 12 || _day < 1) return false;
-
-    static const int mdays[13] = {
-      0,31,28,31,30,31,30,31,31,30,31,30,31
-    };
-    int maxd = mdays[_month];
-    if (_month == 2 && ((_year%4==0 && _year%100!=0) || (_year%400==0)))
-      maxd = 29;
-    return _day <= maxd;
+    return *this;
 }
 
-
-bool checkline(std::string line)
+BitcoinExchange::~BitcoinExchange() 
 {
-	if (line.empty())
-		return false;
-	if (line.find_first_of("|") == std::string::npos)
-		return false;
-	std::string date = line.substr(0, line.find_first_of("|"));
-	std::string value = line.substr(line.find_first_of("|") + 1);
-	if (date.empty() || value.empty())
-		return false;
-	if (date.find_first_not_of("0123456789-") != std::string::npos)
-		return false;
-	if (value.find_first_not_of("0123456789.-") != std::string::npos)
-		return false;
-	return true;
+    if (_file.is_open())
+        _file.close();
 }
 
-void parseInput(std::string &line, std::ifstream &file, int argc, char **argv)
+void BitcoinExchange::readDb(std::string filename)
 {
-    if (argc != 2)
-        throw std::runtime_error("Usage: ./btc [input-file]");
-
-    file.open(argv[1]);
-    if (!file.is_open())
-        throw std::runtime_error("Error: file not found");
-
-    
-    std::getline(file, line);
-    std::string hdr = line;
-    hdr.erase(std::remove(hdr.begin(), hdr.end(), ' '), hdr.end());
-
-    if (hdr != "date|value")
-        throw std::runtime_error("Error: invalid input file format");
-}
-
-void BitcoinExchange::outputData(const std::string& date, double btc_amount)
-{
-    std::map<std::string,double>::const_iterator it = _data.lower_bound(date);
-
-    if (it == _data.end() || it->first != date) {
-        if (it == _data.begin()) {
-            putErr("Error: date before earliest rate => ", RED_BLINK);
-            putErr(date + "\n", RED_BLINK);
-            return;
-        }
-        --it;
+    _file.open(filename.c_str());
+    if (!_file.is_open())
+    {
+        std::cout << "Error: could not open database file." << std::endl;
+        exit(1);
     }
 
-    double rate   = it->second;
-    double result = rate * btc_amount;
-    if (result > std::numeric_limits<int>::max()) {
-        putErr("Error: too large a number.\n", RED_BLINK);
+    std::string line;
+    if (std::getline(_file, line)) {}
+
+    while (std::getline(_file, line))
+    {
+        size_t delimiter = line.find(',');
+        if (delimiter == std::string::npos)
+            continue;
+        
+        std::string date = line.substr(0, delimiter);
+        std::string value = line.substr(delimiter + 1);
+        
+        _data[date] = std::atof(value.c_str());
+    }
+    _file.close();
+}
+
+bool BitcoinExchange::parseDate(std::string date)
+{
+    if (date.length() != 10) return false;
+    if (date[4] != '-' || date[7] != '-') return false;
+
+    int year = std::atoi(date.substr(0, 4).c_str());
+    int month = std::atoi(date.substr(5, 2).c_str());
+    int day = std::atoi(date.substr(8, 2).c_str());
+
+    if (year < 2009) return false; 
+    if (month < 1 || month > 12) return false;
+    if (day < 1 || day > 31) return false;
+
+    if (month == 2)
+    {
+        bool isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+        if (isLeap && day > 29) return false;
+        if (!isLeap && day > 28) return false;
+    }
+    else if (month == 4 || month == 6 || month == 9 || month == 11)
+    {
+        if (day > 30) return false;
+    }
+
+    return true;
+}
+
+void BitcoinExchange::run(std::string filename)
+{
+    std::ifstream input(filename.c_str());
+    if (!input.is_open())
+    {
+        std::cout << "Error: could not open file." << std::endl;
         return;
     }
 
-    putStr("Date: ", CYAN_BOLD);
-    putStr(date, CYAN_BOLD);
+    std::string line;
+    while (std::getline(input, line))
+    {
+        if (line == "date | value")
+            continue;
 
-    putStr(" | Rate: ", CYAN_BOLD);
-    putNum(rate, CYAN_BOLD, 2);
+        if (line.empty()) 
+            continue;
 
-    putStr(" | Amount: ", CYAN_BOLD);
-    putNum(btc_amount, CYAN_BOLD, 2);
+        size_t delimiter = line.find('|');
+        if (delimiter == std::string::npos)
+        {
+            std::cout << "Error: bad input => " << line << std::endl;
+            continue;
+        }
 
-    putStr(" | Result: ", CYAN_BOLD);
-    putNum(result, CYAN_BOLD, 2);
+        std::string date = line.substr(0, delimiter - 1); 
+        std::string valueStr = line.substr(delimiter + 1);
+        float value = std::atof(valueStr.c_str());
 
-    putStr("\n", CYAN_BOLD);
-}
+        if (parseDate(date) == false)
+        {
+            std::cout << "Error: bad input => " << date << std::endl;
+            continue;
+        }
+        
+        if (value < 0)
+        {
+            std::cout << "Error: not a positive number." << std::endl;
+            continue;
+        }
+        
+        if (value > 1000)
+        {
+            std::cout << "Error: too large a number." << std::endl;
+            continue;
+        }
 
+        std::map<std::string, float>::iterator it = _data.lower_bound(date);
 
-
-
-void BitcoinExchange::execute(int argc, char **argv) {
-	std::ifstream file;
-	std::string line;
-	parseInput(line, file, argc, argv);
-
-	while (std::getline(file, line)) {
-		std::string parsedLine = line;
-		removeSpaces(parsedLine);
-		if (!checkline(parsedLine))
-		{
-            putErr("Error: bad input => ", RED_BLINK);
-            putErr(line + "\n", MAGENTA);
-			continue;
-		}
-		std::istringstream iss(parsedLine);
-		std::string date;
-		double btc_data;
-
-		std::getline(iss, date, '|');
-		iss >> btc_data;
-        int year, month, day;
-		if (date < "2009-01-02" || !isValidDateString(date, year, month, day)) {
-            putErr("Error: date out of range => ", RED_BLINK);
-            putErr(line + "\n", MAGENTA);
-			continue;
-		}
-		if (btc_data < 0) {
-            putErr("Error: not a positive number.\n", RED_BLINK);
-			continue;
-		}
-		else if (btc_data > 1000) {
-            putErr("Error: number bigger then 1000. => ", RED_BLINK);
-            putErr(toString(btc_data) + " > 1000 \n", MAGENTA);
-			continue;
-		}
-		outputData(date, btc_data);
-	}
-	file.close();
+        if (it != _data.end() && it->first == date)
+        {
+            std::cout << date << " => " << value << " = " << (it->second * value) << std::endl;
+        }
+        else
+        {
+            if (it == _data.begin())
+            {
+                std::cout << "Error: bad input => " << date << " (too early)" << std::endl;
+            }
+            else
+            {
+                it--;
+                std::cout << date << " => " << value << " = " << (it->second * value) << std::endl;
+            }
+        }
+    }
+    input.close();
 }
