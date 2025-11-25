@@ -1,5 +1,5 @@
-#ifndef BitcoinExchange_HPP
-# define BitcoinExchange_HPP
+#ifndef BITCOINEXCHANGE_HPP
+# define BITCOINEXCHANGE_HPP
 
 # include <iostream>
 # include <fstream>
@@ -38,7 +38,6 @@ class BitcoinExchange
 };
 
 void putStr(std::string str, std::string color);
-void putNum(int bits, std::string color);
 void putErr(std::string str, std::string color);
 
 #endif

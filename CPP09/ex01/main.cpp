@@ -14,7 +14,8 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
     {
-        std::cerr << "Error" << std::endl; 
+        putErr("Error: ./RPN \"1 2 * 0 / 0 * 2 4 - +\"\n", RED);
+        // std::cerr << "Error" << std::endl; 
         return 1;
     }
     

@@ -48,4 +48,7 @@ class PmergeMe
         void    exec();
 };
 
+void putStr(std::string str, std::string color);
+void putErr(std::string str, std::string color);
+
 #endif

@@ -143,3 +143,13 @@ void BitcoinExchange::run(std::string filename)
     }
     input.close();
 }
+
+void putStr(std::string str, std::string color)
+{
+    std::cout << color << str << RESET;
+}
+
+void putErr(std::string str, std::string color)
+{
+    std::cerr << color << str << RESET;
+}

@@ -1,5 +1,15 @@
 #include "RPN.hpp"
 
+void putStr(std::string str, std::string color)
+{
+    std::cout << color << str << RESET;
+}
+
+void putErr(std::string str, std::string color)
+{
+    std::cerr << color << str << RESET;
+}
+
 RPN::RPN() {}
 
 RPN::RPN(const RPN &copy)
@@ -35,7 +45,8 @@ void RPN::run(std::string input)
         {
             if (_stack.size() < 2)
             {
-                std::cerr << "Error" << std::endl;
+                putErr("Error\n", RED);
+                // std::cerr << "Error" << std::endl;
                 return;
             }
 
@@ -54,7 +65,8 @@ void RPN::run(std::string input)
             {
                 if (a == 0)
                 {
-                    std::cerr << "Error" << std::endl;
+                    putErr("Error\n", RED);
+                    // std::cerr << "Error" << std::endl;
                     return;
                 }
                 _stack.push(b / a);
@@ -62,16 +74,19 @@ void RPN::run(std::string input)
         }
         else
         {
-            std::cerr << "Error" << std::endl;
+            putErr("Error\n", RED);
+            // std::cerr << "Error" << std::endl;
             return;
         }
     }
 
     if (_stack.size() != 1)
     {
-        std::cerr << "Error" << std::endl;
+        putErr("Error\n", RED);
+        // std::cerr << "Error" << std::endl;
         return;
     }
 
     std::cout << _stack.top() << std::endl;
 }
+
